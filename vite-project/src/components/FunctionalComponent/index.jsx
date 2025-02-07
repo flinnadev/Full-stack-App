@@ -1,8 +1,12 @@
-function FunctionComponent() {
+function FunctionComponent(props) {
+  const {
+    task: { title },
+  } = props;
+
   return (
     <div>
       <h2>FunctionComponent</h2>
-      <p>Text</p>
+      <p>{title}</p>
     </div>
   );
 }
