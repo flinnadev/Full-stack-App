@@ -1,0 +1,20 @@
+.navigation {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    color: #61dafb;
+  }
+}
+
+.activeLink {
+  text-decoration: none;
+  color: #007bff;
+}

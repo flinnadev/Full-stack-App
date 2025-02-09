@@ -1,0 +1,23 @@
+.userProfile {
+  padding: 20px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+}
+
+.userName {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.userGender {
+  font-size: 16px;
+}
+
+.userAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}

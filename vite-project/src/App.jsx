@@ -1,60 +1,42 @@
 import { useState } from "react";
-import cx from "classnames";
-import ClassComponent from "./components/ClassComponent";
-import FunctionComponent from "./components/FunctionalComponent";
-import styles from "./App.module.scss";
-
-const task = {
-  titele: "Learn fullstack",
-  isDone: false,
-};
+import { Routes, Route } from "react-router";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import AuthLayout from "./Layouts/AuthLayout";
+import LoginPage from "./pages/Login";
+import RegistrationPage from "./pages/Registration";
+import BasicLayout from "./Layouts/MainLayout";
+import UserProfile from "./components/UserProfile ";
+import UsersPage from "./pages/Users";
 
 function App() {
-  const [isVisible, setIsVisible] = useState(true);
-
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
-
-  const headingClasses = cx(styles.heading, {
-    [styles.headingItalics]: !isVisible,
+  const [user, setUser] = useState({
+    id: "12345",
+    firstName: "User",
+    lastName: "Userenko",
+    imgSrc: "https://cdn-icons-png.flaticon.com/512/3607/3607444.png",
+    isMale: true,
+    email: "userUserenko@example.com",
+    password: "supersecurepassword123",
   });
 
   return (
     <>
-      <h1
-        // style={{
-        //   backgroundColor: 'limegreen',
-        //   fontStyle: isVisible ? 'normal' : 'italic'
-        // }}
-        // className={`${styles.heading} ${isVisible ? '' : styles.headingItalics}`}
-        className={headingClasses}
-      >
-        Vite app
-      </h1>
-      <button onClick={toggleVisibility}>Toggle visibility</button>
-      {/* {isVisible && <ClassComponent prop1="test prop 1" prop2 prop3={4} prop4={{ id: 0}} task={task}/>} */}
-      {isVisible && (
-        <FunctionComponent
-          prop1="test prop 1"
-          prop2
-          prop3={4}
-          prop4={{ id: 0 }}
-          task={task}
-        />
-      )}
+      <Routes>
+        <Route path="/" element={<BasicLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<UserProfile user={user} />} />
+          <Route path="/users" element={<UsersPage />} />
+        </Route>
 
-      {isVisible ? (
-        <FunctionComponent
-          prop1="test prop 1"
-          prop2
-          prop3={4}
-          prop4={{ id: 0 }}
-          task={task}
-        />
-      ) : (
-        <div>No component shown. Click button to reveal</div>
-      )}
+        <Route path="/auth" element={<AuthLayout />}>
+          {/* '/auth/login */}
+          <Route path="login" element={<LoginPage />} />
+          {/* '/auth/registration */}
+          <Route path="registration" element={<RegistrationPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }
